@@ -1,3 +1,4 @@
+<body onload="get_password();">
 <style>
 	
         .desktop {
@@ -118,9 +119,18 @@
         <div class="close-button" onclick="closePopup('popup3')">X</div>
         
     </div>
-    
+  
+
+
 
     <script>
+	 function get_password() {
+	  let ww = prompt("Welcome back, please enter your password.");
+	  if (ww == "flag") {
+
+	  }
+	  else{get_password()}
+	}
         function showPopup(popupId) {
             var popup = document.getElementById(popupId);
             popup.style.display = "block";
@@ -131,3 +141,4 @@
             popup.style.display = "none";
         }
     </script>
+	</body>
