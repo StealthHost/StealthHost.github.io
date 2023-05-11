@@ -1,0 +1,126 @@
+<style>
+        .desktop {
+          
+            width: 800px;
+            height: 600px;
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-image: linear-gradient(blue,white);
+            background-repeat: no-repeat;
+  
+           	background-size: contain;
+			background-size: cover;
+            
+        }
+        .footer {
+           position: fixed;
+           left: 0;
+           bottom: 0;
+           width: 100%;
+           background-color: red;
+           color: white;
+           text-align: center;
+        }
+        .icon-container {
+            display: flex;
+            justify-content: center;
+        }
+        .icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 80px;
+            height: 120px;
+            margin: 60px;
+            cursor: pointer;
+        }
+        .icon-image {
+            width: 60px;
+            height: 60px;
+            
+            margin-bottom: 10px;
+        }
+        .icon-label {
+            font-size: 12px;
+            text-align: center;
+        }
+        .popup {
+            position: absolute;
+            top: 200px;
+            left: 200px;
+            width: 400px;
+            height: 200px;
+            background-color: #fff;
+            color: #000;
+            padding: 20px;
+            display: none;
+            z-index: 9999;
+        }
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+    </style>
+<body>
+    <div class="desktop">
+        <div class="icon-container">
+            <div class="icon" onclick="showPopup('popup1')">
+                <div class="icon-image"><img class="icon-image" src="https://cdn4.iconfinder.com/data/icons/file-extensions-1/64/txts-512.png"></div>
+                <div class="icon-label">Music_to_listen_to.txt</div>
+            </div>
+            <div class="icon" onclick="showPopup('popup2')">
+                <div class="icon-image"><img class="icon-image" src="https://cdn4.iconfinder.com/data/icons/file-extensions-1/64/txts-512.png"></div>
+                <div class="icon-label">READ.txt</div>
+            </div>
+            <div class="icon" onclick="showPopup('popup3')">
+                <div class="icon-image"><img class="icon-image" src="https://cdn4.iconfinder.com/data/icons/file-extensions-1/64/pdfs-64.png"></div>
+                <div class="icon-label">administration_overview.pdf</div>
+          
+            </div>
+           
+        </div>
+        
+    </div>
+
+    <div class="popup" id="popup1">
+    	<code>/Desktop/Music_to_listen_to.txt</code><br>
+		<code>Last edited by: admin</code><br>
+        <h3>Favorite music</h3>
+        <p>Eagles - Hotel California <br>AC/DC Back In Black.
+
+</p>
+<p style="color:white">pw reminder for overview: <strong>wachtwoord</strong></p>
+        <div class="close-button" onclick="closePopup('popup1')">X</div>
+    </div>
+    <div class="popup" id="popup2">
+    	<code>/Desktop/READ.txt</code><br>
+		<code>Last edited by: [UNKNOWN]</code><br>
+        <h3>>:-))</h3>
+        <p>You've got hacked hahah, your security stinks...</p>
+        <div class="close-button" onclick="closePopup('popup2')">X</div>
+    </div>
+    <div class="popup" id="popup3">
+    	<code>/Desktop/administration_overview.pdf</code><br>
+		<code>Last edited by: admin2</code><br>
+        <h3>administration_overview.pdf</h3>
+        <a href="http://192.168.95.160/wp-content/uploads/2023/05/administration_overview.pdf">administration_overview.pdf</a>
+        <div class="close-button" onclick="closePopup('popup3')">X</div>
+        
+    </div>
+    
+
+    <script>
+        function showPopup(popupId) {
+            var popup = document.getElementById(popupId);
+            popup.style.display = "block";
+        }
+
+        function closePopup(popupId) {
+            var popup = document.getElementById(popupId);
+            popup.style.display = "none";
+        }
+    </script>
