@@ -127,7 +127,16 @@
 	 function get_creds() {
 	  let user = prompt("Welcome back, please enter your username.");
 	  let ww = prompt("Welcome back, please enter your password.");
-	  if (user == "user02" && ww == "flag") {
+	  if (user == "user02") {
+		  if (ww == "flag"){
+			  
+		  
+		  }
+		  else{
+		  alert("Wrong password!");
+                  get_creds();
+				  
+		  }
 
 	  }
 	  else{get_creds()}
