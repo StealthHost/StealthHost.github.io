@@ -124,13 +124,15 @@
 
 
     <script>
-	 function get_password() {
+	 function get_creds() {
+	  let user = prompt("Welcome back, please enter your username.");
 	  let ww = prompt("Welcome back, please enter your password.");
-	  if (ww == "flag") {
+	  if (user == "user02" and ww == "flag") {
 
 	  }
-	  else{get_password()}
+	  else{get_creds()}
 	}
+	
         function showPopup(popupId) {
             var popup = document.getElementById(popupId);
             popup.style.display = "block";
@@ -142,3 +144,5 @@
         }
     </script>
 	</body>
+	
+	
