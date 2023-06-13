@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fake Terminal</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .terminal {
+      width: 600px;
+      height: 400px;
+      padding: 20px;
+      box-sizing: border-box;
+      font-family: monospace;
+      color: white;
+      background-color: #000000;
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin: 20px;
+    }
+    .output {
+      font-size: 22px;
+    }
+    .input-container {
+      display: flex;
+      align-items: center;
+      font-size: 22px;
+      margin-top: 10px;
+    }
+    .input-text {
+      flex-grow: 1;
+      background-color: transparent;
+      border: none;
+      color: white;
+      outline: none;
+      font-size: 22px;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <code style="color:white;">Inputs: list, recover-pw</code>
+  <div class="terminal">
+    <div class="output" id="output"></div>
+    <div class="input-container">
+      <span>rescue:~# </span>
+      <input type="text" id="commandInput" class="input-text" autofocus>
+      <div class="cursor"></div>
+    </div>
+  </div>
+
+  <script>
+    // Fake files
+    const files = [
+      { name: "file1.txt", size: "10KB" },
+      { name: "file2.jpg", size: "2MB" },
+      { name: "file3.doc", size: "50KB" }
+    ];
+
+    // Handle user input
+    const outputElement = document.getElementById("output");
+    const commandInput = document.getElementById("commandInput");
+
+    commandInput.addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        executeCommand(commandInput.value.trim());
+        commandInput.value = "";
+      }
+    });
+
+    // Execute command
+    function executeCommand(command) {
+      const output = document.createElement("div");
+      output.textContent = `rescue:~# ${command}`;
+
+      if (command === "list") {
+        files.forEach(file => {
+          const fileElement = document.createElement("div");
+          fileElement.textContent = `${file.name} - ${file.size}`;
+          output.appendChild(fileElement);
+        });
+      } else if (command === "recover-pw") {
+        const verifyElement = document.createElement("div");
+        verifyElement.textContent = "Enter your username and favorite song to recover your password:";
+        output.appendChild(verifyElement);
+
+        const usernameInput = document.createElement("input");
+        usernameInput.setAttribute("type", "text");
+        usernameInput.setAttribute("placeholder", "Username");
+        output.appendChild(usernameInput);
+
+        const songInput = document.createElement("input");
+        songInput.setAttribute("type", "text");
+        songInput.setAttribute("placeholder", "Favorite Song");
+        output.appendChild(songInput);
+
+        const recoverButton = document.createElement("button");
+        recoverButton.textContent = "Recover Password";
+        recoverButton.addEventListener("click", function() {
+          const username = usernameInput.value;
+          const song = songInput.value;
+
+          // Here you can implement the logic to verify the username and favorite song
+          // and retrieve the password if the verification is successful
+          const birthdate = "15-05-2000"; // Predefined birthdate for verification
+
+
+if (username === "user_nobody2" && song === birthdate) {
+  // Verification successful, retrieve the password
+  const passwordElement = document.createElement("div");
+  passwordElement.textContent = "Your password is: [flag]";
+  output.appendChild(passwordElement);
+} else {
+  // Verification failed
+  const errorElement = document.createElement("div");
+  errorElement.textContent = "Invalid username or favorite song.";
+  errorElement.style.color = "red";
+  output.appendChild(errorElement);
+}
+
+   
+        });
+        output.appendChild(recoverButton);
+      } else {
+        const errorElement = document.createElement("div");
+        errorElement.textContent = "Command not found.";
+        errorElement.style.color = "red";
+        output.appendChild(errorElement);
+      }
+
+      outputElement.appendChild(output);
+      outputElement.scrollTop = outputElement.scrollHeight;
+    }
+  </script>
+</body>
+</html>
