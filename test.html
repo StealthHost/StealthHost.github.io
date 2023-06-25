@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Melding Test</title>
+</head>
+<body>
+  <h1>Melding Test</h1>
+  
+  <button id="notificationButton">Stuur melding</button>
+  
+  <script>
+    if ('Notification' in window && 'serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+      Notification.requestPermission(function(result) {
+        if (result === 'granted') {
+          navigator.serviceWorker.ready.then(function(registration) {
+            registration.showNotification('Notification with ServiceWorker');
+          });
+        }
+      });
+    } else {
+      console.error('Meldingen worden niet ondersteund in deze browser.');
+    }
+    
+    // Voeg een eventlistener toe aan de knop
+    var notificationButton = document.getElementById('notificationButton');
+    notificationButton.addEventListener('click', function() {
+      if (Notification.permission === 'granted') {
+        navigator.serviceWorker.ready.then(function(registration) {
+          registration.showNotification('Notification with ServiceWorker');
+        });
+      } else {
+        console.error('Toestemming voor meldingen is niet verleend.');
+      }
+    });
+  </script>
+</body>
+</html>
