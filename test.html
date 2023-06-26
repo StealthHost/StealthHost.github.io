@@ -1,20 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Melding na vertraging</title>
-  <script>
-    function showNotification() {
-      setTimeout(function() {
-        Notification.requestPermission().then(function(permission) {
-          if (permission === "granted") {
-            new Notification("Dit is een vertraagde melding!");
-          }
-        });
-      }, 5000);
-    }
-  </script>
-</head>
-<body>
-  <button onclick="showNotification()">Toon melding na 5 seconden</button>
-</body>
-</html>
+// Extern JavaScript-bestand (bijv. "mijnscript.js")
+
+// Functie om meldingen in te schakelen
+function schakelMeldingenIn() {
+  if (Notification.permission !== 'granted') {
+    Notification.requestPermission();
+  }
+}
+
+// Functie om een melding weer te geven
+function toonMelding(tekst) {
+  if (Notification.permission === 'granted') {
+    new Notification(tekst);
+  }
+}
